@@ -1,3 +1,13 @@
 language: java
 before_install: ant init-ivy
 script: ant all
+deploy:
+  provider: releases
+  api_key:
+    secure: MTDbe0B4Kw9+ebJaQ2bSN9rzd30M3O7X2badZm99Dpf2l5f8eey17frpAiGSknsgFqJ2KUVYqxk7pH6UW7z+GFkmpVkRkslfR7pPM3iG5poybRLz16tlr+FsAfG0u4rh0hfPSDw2G5qgjZL8Fn5SRNHIBCHbw8lLW11VMB1MAhE=
+  file: dist/go-npm-poller.jar
+  skip_cleanup: true
+  on:
+    repo: varchev/go-npm-poller
+    tags: true
+    all_branches: true
