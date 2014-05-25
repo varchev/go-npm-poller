@@ -1,1 +1,6 @@
 language: java
+before_install: ant init-ivy
+install: ant resolve
+jdk:
+  - oraclejdk6
+  - openjdk6
