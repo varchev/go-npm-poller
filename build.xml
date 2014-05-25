@@ -1,0 +1,80 @@
+<project name="go-npm-poller" default="all" basedir="." xmlns:ivy="antlib:org.apache.ivy.ant">
+
+    <!--<property name="go.plugin.api" value="lib/go-plugin-api-14.1.0.jar"/>-->
+    <property name="go.plugin.util" value="sdk/go-plugin-util.jar"/>
+    <property name="target.dir" value="bin"/>
+    <property name="dist.dir" value="dist"/>
+    <property name="test.reports.dir" value="reports"/>
+
+    <path id="compile.classpath">
+        <fileset dir="lib">
+            <include name="**/*.jar"/>
+        </fileset>
+        <pathelement location="${go.plugin.util}"/>
+
+    </path>
+
+    <target name="resolve">
+        <ivy:retrieve/>
+    </target>
+
+    <target name="all" depends="clean, compile.source, compile.test, test, dist"/>
+
+    <target name="clean">
+        <delete dir="${target.dir}" description="Deletes the target directory"/>
+        <delete dir="${dist.dir}" description="Deletes the dist directory"/>
+    </target>
+
+    <target name="prepare" depends="clean">
+        <mkdir dir="${target.dir}"/>
+        <mkdir dir="${target.dir}/src"/>
+        <mkdir dir="${target.dir}/test"/>
+        <mkdir dir="${test.reports.dir}"/>
+    </target>
+
+    <target name="compile.source" depends="prepare, resolve">
+        <javac srcdir="./src" destdir="${target.dir}/src" classpathref="compile.classpath" includeantruntime="false"
+               source="1.6"/>
+    </target>
+
+
+    <target name="compile.test" depends="compile.source">
+        <javac srcdir="test" destdir="${target.dir}/test" includeantruntime="false">
+            <classpath refid="compile.classpath"/>
+            <classpath location="${target.dir}/src"/>
+        </javac>
+    </target>
+
+    <target name="test" depends="compile.test">
+        <junit failureproperty="test.failed">
+            <classpath>
+                <path refid="compile.classpath"/>
+                <pathelement location="${target.dir}/src"/>
+                <pathelement location="${target.dir}/test"/>
+            </classpath>
+            <formatter type="plain"/>
+            <batchtest fork="yes" todir="${test.reports.dir}">
+                <fileset dir="test/fast">
+                    <include name="**/*Test*.java"/>
+                </fileset>
+            </batchtest>
+        </junit>
+        <fail message="Test failure detected, check test results." if="test.failed"/>
+    </target>
+
+    <target name="dist" depends="compile.source">
+        <mkdir dir="${target.dir}/src/lib"/>
+        <copy todir="${target.dir}/src/lib" flatten="true">
+            <fileset dir="lib">
+                <exclude name="junit*.jar"/>
+                <exclude name="mockito*.jar"/>
+                <include name="*.jar"/>
+            </fileset>
+            <file file="sdk/go-plugin-util.jar"/>
+        </copy>
+        <basename property="jar.name" file="${basedir}"/>
+        <copy file="plugin.xml" todir="${target.dir}/src"/>
+        <mkdir dir="${dist.dir}"/>
+        <jar basedir="${target.dir}/src" destfile="${dist.dir}/${jar.name}.jar"/>
+    </target>
+</project>
