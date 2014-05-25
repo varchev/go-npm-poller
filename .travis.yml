@@ -1,6 +1,8 @@
 language: java
 before_install: ant init-ivy
 script: ant all
+jdk:
+  - openjdk6
 deploy:
   provider: releases
   api_key:
