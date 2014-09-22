@@ -56,7 +56,13 @@ public class NpmParams {
 
     public String getQuery() {
         StringBuilder query = new StringBuilder();
-        query.append(((HttpRepoURL) repoUrl).getUrlWithBasicAuth());
+        String repoUrlString = ((HttpRepoURL) repoUrl).getUrlWithBasicAuth();
+        query.append(repoUrlString);
+
+        if (!repoUrlString.endsWith("/")) {
+            query.append("/");
+        }
+
         query.append(getPackageId());
 
         return query.toString();
