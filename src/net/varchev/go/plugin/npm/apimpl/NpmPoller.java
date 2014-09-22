@@ -107,7 +107,7 @@ public class NpmPoller implements PackageMaterialPoller {
         String url = params.getQuery();
         LOGGER.info(url);
         PackageRevision packageRevision = new NpmFeedDocument(new Feed(url).download(), params.getPollVersionFrom(), params.getPollVersionTo(), params.getLastKnownVersion()).getPackageRevision();
-        if(params.getRepoUrl().getCredentials().provided())
+        if (packageRevision != null && params.getRepoUrl().getCredentials().provided())
             addUserInfoToLocation(packageRevision, params.getRepoUrl().getCredentials());
         return packageRevision;
     }
