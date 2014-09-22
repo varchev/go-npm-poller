@@ -139,7 +139,7 @@ public class NpmFeedDocument {
             if(lastKnownVersion != null) return null;
             else throw new NpmException("No such package found");
         }
-        PackageRevision result = new PackageRevision(getPackageLabel(), getPublishedDate(), getAuthor());
+        PackageRevision result = new PackageRevision(getPackageVersion(), getPublishedDate(), getAuthor());
         result.addData(NpmPackageConfig.PACKAGE_LOCATION, getPackageLocation());
         result.addData(NpmPackageConfig.PACKAGE_VERSION, getPackageVersion());
         return result;
