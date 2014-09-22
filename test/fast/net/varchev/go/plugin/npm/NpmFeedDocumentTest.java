@@ -23,7 +23,7 @@ public class NpmFeedDocumentTest {
         JSONObject doc = new JSONObject(fileContent);
         PackageRevision result = new NpmFeedDocument(doc,null,null,null).getPackageRevision();
         assertThat(result.getUser(), is("Jeremy Ashkenas"));
-        assertThat(result.getRevision(), is("underscore-1.6.0"));
+        assertThat(result.getRevision(), is("1.6.0"));
 
         assertThat(result.getTimestamp(), is(javax.xml.bind.DatatypeConverter.parseDateTime(("2014-02-10T21:14:55.838Z")).getTime()));
         assertThat(result.getDataFor(NpmPackageConfig.PACKAGE_LOCATION), is("http://registry.npmjs.org/underscore/-/underscore-1.6.0.tgz"));
