@@ -1,20 +1,20 @@
-#Go Npm Registry Poller
+# GoCD Npm Registry Poller
 
-A [Go](http://www.go.cd) plugin that polls a Npm registry
+A [GoCD](https://www.go.cd) plugin that polls a Npm registry
 
 [![Build Status](https://travis-ci.org/varchev/go-npm-poller.svg?branch=master)](https://travis-ci.org/varchev/go-npm-poller)
 
 Introduction
 ------------
-This is a [package material](http://www.thoughtworks.com/products/docs/go/current/help/package_material.html) plugin for [Go](http://www.go.cd). It is currently capable of polling [Npm](http://www.npmjs.org/) registries.
+This is a [package material](https://docs.go.cd/current/extension_points/package_repository_extension.html) plugin for [GoCD](https://www.go.cd). It is currently capable of polling [Npm](https://www.npmjs.com/) registries.
 
-The behaviour and capabilities of the plugin are determined to a significant extent by that of the package material extension point in Go. Be sure to read the package material documentation before using this plugin.
+The behaviour and capabilities of the plugin are determined to a significant extent by that of the package material extension point in GoCD. Be sure to read the package material documentation before using this plugin.
 
 This is a pure Java plugin. It does not need node.js or npm installed. You may however require node.js and npm on the agents.
 
 Installation
 ------------
-Just drop [go-npm-poller.jar](https://github.com/varchev/go-npm-poller/releases) into plugins/external directory and restart Go. More details [here](http://www.thoughtworks.com/products/docs/go/current/help/plugin_user_guide.html)
+Just drop [go-npm-poller.jar](https://github.com/varchev/go-npm-poller/releases) into plugins/external directory and restart GoCD. More details [here](https://docs.go.cd/current/extension_points/plugin_user_guide.html)
 
 Repository definition
 ---------------------
