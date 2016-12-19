@@ -101,6 +101,7 @@
         <copy todir="${target.dir}/src/lib" flatten="true">
             <fileset dir="lib">
                 <exclude name="junit*.jar"/>
+                <exclude name="go-plugin-api*.jar"/>
                 <exclude name="mockito*.jar"/>
                 <include name="*.jar"/>
             </fileset>
