@@ -6,7 +6,7 @@ jdk:
 deploy:
   provider: releases
   api_key:
-    secure: MTDbe0B4Kw9+ebJaQ2bSN9rzd30M3O7X2badZm99Dpf2l5f8eey17frpAiGSknsgFqJ2KUVYqxk7pH6UW7z+GFkmpVkRkslfR7pPM3iG5poybRLz16tlr+FsAfG0u4rh0hfPSDw2G5qgjZL8Fn5SRNHIBCHbw8lLW11VMB1MAhE=
+    secure: kVEBT2/0avk1seZeJMI9zTxP7Yrgz2IWa2WiHEgHWebDySMbC+3GAGCdoLC1RwAa5R18zh/D64uGuBzW6y79NDZh5ysnvcGul0rxNH9hppcXXixUY1c4OW7Even5fgEwaoZT5G+cSKJV05WrcFZTqVMs3eWOiYrYNiJ+9dMR6PE=
   file: dist/go-npm-poller.jar
   skip_cleanup: true
   on:
